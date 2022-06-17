@@ -1,5 +1,6 @@
 import datetime
 
+from django import forms
 from django.db import models
 from django.utils import timezone
 from django.contrib import admin
@@ -43,11 +44,17 @@ Q1_CHOICES = (
     ('3', 'Nothing'),
 )
 
+Q2_CHOICES = (
+    ('1', 'One (Monotheistic)'),
+    ('2', 'More than one God'),
+    ('3', 'More than one aspect of one God'),
+    ('4', 'None'),
+)
 
 class Response(models.Model):
     name = models.CharField(max_length=100)
     q1 = models.CharField(choices=Q1_CHOICES, max_length=200, verbose_name="What do you believe happens after you die?")
-    q2 = models.CharField(max_length=10)
+    q2 = models.CharField(choices=Q2_CHOICES, max_length=200, verbose_name="How many deities are in your religion?")
     q3 = models.CharField(max_length=10)
     q4 = models.CharField(max_length=10)
     q5 = models.CharField(max_length=10)
@@ -63,6 +70,10 @@ class Response(models.Model):
 
 
 class ResponseForm(ModelForm):
+    q1 = forms.ChoiceField(choices=Q1_CHOICES, widget=forms.RadioSelect)
+    q2 = forms.MultipleChoiceField(choices=Q2_CHOICES, widget=forms.CheckboxSelectMultiple)
+
     class Meta:
         model = Response
         fields = ['name', 'q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9', 'q10', 'q11']
+

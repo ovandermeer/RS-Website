@@ -97,4 +97,4 @@ body {
 
 /*=quiz=*/
 
-.myForm input {display:block; border: red 5px solid}
+.myForm input, .myForm select {display: block; margin: 10px}
