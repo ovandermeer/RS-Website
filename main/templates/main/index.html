@@ -1,0 +1,45 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!--<link rel="stylesheet" href="./css/styles.css" />-->
+  <link rel="stylesheet" href="{% static 'main/css/styles.css' %}" />
+  <title>Basedism</title>
+</head>
+
+<body>
+  <header class="navhead">
+    <h1 class="logo">Basedism</h1>
+    <nav>
+      <ul class="nav-area top-nav">
+        <li><a href="/">Home</a></li>
+        <li><a href="deities/">Deities</a></li>
+        <li><a href="rituals/">Rituals</a></li>
+        <li><a href="quiz/">Religion Quiz</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+    </nav>
+  </header>
+  <div class="wrapper">
+    <div class="home" id="home">
+      <div class="home-text">
+        <h1 class="home-header">Basedism</h1>
+        <p class="home-paragraph">
+          Basedism is a new-age religion with a focus on meditation and community. There are no requirements to join and
+          we strongly believe in radical acceptance, the practice of not juding others for their immutable traits.
+          Regardless of gender, sexuality, race, ethnicity or history, we accept and celebrate all.
+        </p>
+      </div>
+      <div class="home-img">
+        <img src="{% static 'main/assets/images/void.jpeg' %}" alt="Basedism header img" />
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
