@@ -95,3 +95,6 @@ body {
 
 /*=============== About ===============*/
 
+/*=quiz=*/
+
+.myForm input {display:block; border: red 5px solid}
