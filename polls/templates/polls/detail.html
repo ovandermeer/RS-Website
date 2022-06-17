@@ -48,7 +48,11 @@
 <div class="myForm">
         <form action="/polls/form/" method="post">
             {% csrf_token %}
-            {{ form }}
+            {% for field in form %}
+                <label class="label-class">{{ field.label }}</label>
+                {{ field }}
+                {% endfor %}
+{#            {{ form }}#}
             <input type="submit" value="Submit">
         </form>
 </div>

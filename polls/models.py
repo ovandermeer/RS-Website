@@ -111,31 +111,31 @@ class Response(models.Model):
     q1 = models.CharField(choices=Q1_CHOICES, max_length=200, verbose_name="What do you believe happens after you die?")
     q2 = models.CharField(choices=Q2_CHOICES, max_length=200, verbose_name="How many deities are in your religion?")
     q3 = models.CharField(max_length=10, choices=Q3_CHOICES, verbose_name="Types And Amount Of Prayer?")
-    q4 = models.CharField(max_length=10)
-    q5 = models.CharField(max_length=10)
-    q6 = models.CharField(max_length=10)
-    q7 = models.CharField(max_length=10)
-    q8 = models.CharField(max_length=10)
-    q9 = models.CharField(max_length=10)
-    q10 = models.CharField(max_length=10)
-    q11 = models.CharField(max_length=10)
+    q4 = models.CharField(max_length=10, choices=Q4_CHOICES, verbose_name="What kind of rules do you find acceptable?")
+    q5 = models.CharField(max_length=10, choices=Q5_CHOICES, verbose_name="Do you want to travel/go on a pilgrimage?")
+    q6 = models.CharField(max_length=10, choices=Q6_CHOICES, verbose_name="Preferred type of meeting place for your religious gatherings")
+    q7 = models.CharField(max_length=10, choices=Q7_CHOICES, verbose_name="Does sitting with people of the opposite sex distract you from the service?")
+    q8 = models.CharField(max_length=10, choices=Q8_CHOICES, verbose_name="Do you want your place of worship to open during non-service times for personal prayer?")
+    q9 = models.CharField(max_length=10, choices=Q9_CHOICES, verbose_name="Preferred method of joining a religion")
+    q10 = models.CharField(max_length=10, choices=Q10_CHOICES, verbose_name="How do you think the world/universe was created?")
+    q11 = models.CharField(max_length=10, choices=Q11_CHOICES, verbose_name="Do you wish to attain spiritual enlightment through you or religious authorities?")
 
     class Meta:
         verbose_name = "User response"
 
 
 class ResponseForm(ModelForm):
-    q1 = forms.ChoiceField(choices=Q1_CHOICES, widget=forms.RadioSelect)
-    q2 = forms.ChoiceField(choices=Q2_CHOICES, widget=forms.RadioSelect)
-    q3 = forms.ChoiceField(choices=Q3_CHOICES, widget=forms.RadioSelect)
-    q4 = forms.MultipleChoiceField(choices=Q4_CHOICES, widget=forms.CheckboxSelectMultiple)
-    q5 = forms.ChoiceField(choices=Q5_CHOICES, widget=forms.RadioSelect)
-    q6 = forms.ChoiceField(choices=Q6_CHOICES, widget=forms.RadioSelect)
-    q7 = forms.ChoiceField(choices=Q7_CHOICES, widget=forms.RadioSelect)
-    q8 = forms.ChoiceField(choices=Q8_CHOICES, widget=forms.RadioSelect)
-    q9 = forms.ChoiceField(choices=Q9_CHOICES, widget=forms.RadioSelect)
-    q10 = forms.ChoiceField(choices=Q10_CHOICES, widget=forms.RadioSelect)
-    q11 = forms.ChoiceField(choices=Q11_CHOICES, widget=forms.RadioSelect)
+    q1 = forms.ChoiceField(label="What do you believe happens after you die?", choices=Q1_CHOICES, widget=forms.RadioSelect)
+    q2 = forms.ChoiceField(label="How many deities are in your religion?", choices=Q2_CHOICES, widget=forms.RadioSelect)
+    q3 = forms.ChoiceField(label="Types And Amount Of Prayer?", choices=Q3_CHOICES, widget=forms.RadioSelect)
+    q4 = forms.MultipleChoiceField(label="What kind of rules do you find acceptable?", choices=Q4_CHOICES, widget=forms.CheckboxSelectMultiple)
+    q5 = forms.ChoiceField(label="Do you want to travel/go on a pilgrimage?", choices=Q5_CHOICES, widget=forms.RadioSelect)
+    q6 = forms.ChoiceField(label="Preferred type of meeting place for your religious gatherings",choices=Q6_CHOICES, widget=forms.RadioSelect)
+    q7 = forms.ChoiceField(label="Does sitting with people of the opposite sex distract you from the service?",choices=Q7_CHOICES, widget=forms.RadioSelect)
+    q8 = forms.ChoiceField(label="Do you want your place of worship to open during non-service times for personal prayer?",choices=Q8_CHOICES, widget=forms.RadioSelect)
+    q9 = forms.ChoiceField(label="Preferred method of joining a religion",choices=Q9_CHOICES, widget=forms.RadioSelect)
+    q10 = forms.ChoiceField(label="How do you think the world/universe was created?",choices=Q10_CHOICES, widget=forms.RadioSelect)
+    q11 = forms.ChoiceField(label="Do you wish to attain spiritual enlightment through you or religious authorities?",choices=Q11_CHOICES, widget=forms.RadioSelect)
 
     class Meta:
         model = Response

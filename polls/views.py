@@ -6,6 +6,9 @@ from django.utils import timezone
 
 from .models import Choice, Question, ResponseForm
 
+from polls.libraries.RC import exec as generate_religion
+
+
 class IndexView(generic.ListView):
     template_name = 'polls/index.html'
     context_object_name = 'latest_question_list'
@@ -71,6 +74,8 @@ def get_name(request):
             # ...
             # redirect to a new URL:
         print(form.data)
+        print(generate_religion(form.data)[0])
+
         #form.save()
         return HttpResponseRedirect('polls/thanks/')
 
