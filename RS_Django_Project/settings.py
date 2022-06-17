@@ -75,14 +75,21 @@ WSGI_APPLICATION = 'RS_Django_Project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'religion_chooser',
+#         'USER': 'django',
+#         'PASSWORD': 'sqlOwe1_Vdm',
+#         'HOST': 'localhost',
+#         'PORT': '',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'religion_chooser',
-        'USER': 'django',
-        'PASSWORD': 'sqlOwe1_Vdm',
-        'HOST': 'localhost',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 

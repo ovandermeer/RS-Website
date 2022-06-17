@@ -4,6 +4,8 @@ from django.db import models
 from django.utils import timezone
 from django.contrib import admin
 
+from django.forms import ModelForm
+
 
 class Question(models.Model):
     question_text = models.CharField(max_length=200)
@@ -44,7 +46,7 @@ Q1_CHOICES = (
 
 class Response(models.Model):
     name = models.CharField(max_length=100)
-    q1 = models.CharField(choices=Q1_CHOICES, max_length=200)
+    q1 = models.CharField(choices=Q1_CHOICES, max_length=200, verbose_name="What do you believe happens after you die?")
     q2 = models.CharField(max_length=10)
     q3 = models.CharField(max_length=10)
     q4 = models.CharField(max_length=10)
@@ -58,3 +60,9 @@ class Response(models.Model):
 
     class Meta:
         verbose_name = "User response"
+
+
+class ResponseForm(ModelForm):
+    class Meta:
+        model = Response
+        fields = ['name', 'q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9', 'q10', 'q11']
