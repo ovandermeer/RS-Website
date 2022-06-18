@@ -13,7 +13,7 @@ body {
   padding: 0;
   margin: 0;
   font-family: "Lato", sans-serif;
-  background-color: #FFFFFC;
+  background-color: #fffffc;
 }
 
 /*=============== Nav ===============*/
@@ -28,6 +28,8 @@ body {
 }
 
 .logo {
+  font-size: 2rem;
+  text-decoration: none;
   cursor: pointer;
   color: black;
   transition: 0.3s;
@@ -88,13 +90,69 @@ body {
 }
 
 .home-img img {
-  clip-path: circle(45%);
+  clip-path: circle(50%);
   height: 350px;
   width: 354px;
 }
 
-/*=============== About ===============*/
+svg {
+  display: inline-block;
+}
+
+.vibeo {
+  justify-content: left;
+}
+
+/*=============== Diet Pepsi ===============*/
+
+.header {
+  margin-left: 6rem;
+}
+
+.acceptance {
+    clip-path: circle(50%);
+    height: 270px;
+    width: 274px;
+    margin-left: 20px;
+}
+
+.God {
+    text-align: left;
+    word-wrap: break-word;
+    margin-left: 5rem;
+}
+
+.God h1 {
+    margin-left: 7rem;
+}
+
+.Godp {
+    width: 450px;
+    text-align: center;
+    word-wrap: break-word;
+    margin-left: 1.7rem;
+}
+
+.section {
+    width: 500px;
+    float: left;
+    margin-left: 6.3px;
+    display: grid;
+    justify-content: center;
+}
 
 /*=quiz=*/
 
-.myForm input, .myForm select {display: block; margin: 10px}
+.myForm input,
+.myForm select {
+  justify-content: left;
+  display: block;
+  margin: 10px;
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
