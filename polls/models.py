@@ -1,41 +1,41 @@
-import datetime
+# import datetime
 
 from django import forms
 from django.db import models
-from django.utils import timezone
-from django.contrib import admin
+# from django.utils import timezone
+# from django.contrib import admin
 
 from django.forms import ModelForm
 
 
-class Question(models.Model):
-    question_text = models.CharField(max_length=200)
-    pub_date = models.DateTimeField('date published')
-
-    def __str__(self):
-        return self.question_text
-
-    def was_published_recently(self):
-        now = timezone.now()
-        return now - datetime.timedelta(days=1) <= self.pub_date <= now
-
-    @admin.display(
-        boolean=True,
-        ordering='pub_date',
-        description='Published recently?',
-    )
-    def was_published_recently(self):
-        now = timezone.now()
-        return now - datetime.timedelta(days=1) <= self.pub_date <= now
-
-
-class Choice(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    choice_text = models.CharField(max_length=200)
-    votes = models.IntegerField(default=0)
-
-    def __str__(self):
-        return self.choice_text
+# class Question(models.Model):
+#     question_text = models.CharField(max_length=200)
+#     pub_date = models.DateTimeField('date published')
+#
+#     def __str__(self):
+#         return self.question_text
+#
+#     def was_published_recently(self):
+#         now = timezone.now()
+#         return now - datetime.timedelta(days=1) <= self.pub_date <= now
+#
+#     @admin.display(
+#         boolean=True,
+#         ordering='pub_date',
+#         description='Published recently?',
+#     )
+#     def was_published_recently(self):
+#         now = timezone.now()
+#         return now - datetime.timedelta(days=1) <= self.pub_date <= now
+#
+#
+# class Choice(models.Model):
+#     question = models.ForeignKey(Question, on_delete=models.CASCADE)
+#     choice_text = models.CharField(max_length=200)
+#     votes = models.IntegerField(default=0)
+#
+#     def __str__(self):
+#         return self.choice_text
 
 
 Q1_CHOICES = (
@@ -75,7 +75,9 @@ Q5_CHOICES = (
 
 Q6_CHOICES = (
     ('1', 'Worships in a building of religious significance of a specific week day each week'),
-    ('2', 'Often happens in a building of religious significance but sometimes happens in an informal setting, on a specific day of the week'),
+    ('2',
+     'Often happens in a building of religious significance but sometimes happens in an informal setting, '
+     'on a specific day of the week'),
     ('3', 'Worship is not on a specific day, or no common gathering place'),
 )
 
@@ -106,38 +108,54 @@ Q11_CHOICES = (
     ('2', 'Personal Relationship'),
 )
 
+
 class Response(models.Model):
     name = models.CharField(max_length=100)
-    q1 = models.CharField(choices=Q1_CHOICES, max_length=200, verbose_name="What do you believe happens after you die?")
-    q2 = models.CharField(choices=Q2_CHOICES, max_length=200, verbose_name="How many deities are in your religion?")
+    q1 = models.CharField(max_length=10, choices=Q1_CHOICES, verbose_name="What do you believe happens after you die?")
+    q2 = models.CharField(max_length=10, choices=Q2_CHOICES, verbose_name="How many deities are in your religion?")
     q3 = models.CharField(max_length=10, choices=Q3_CHOICES, verbose_name="Types And Amount Of Prayer?")
     q4 = models.CharField(max_length=10, choices=Q4_CHOICES, verbose_name="What kind of rules do you find acceptable?")
     q5 = models.CharField(max_length=10, choices=Q5_CHOICES, verbose_name="Do you want to travel/go on a pilgrimage?")
-    q6 = models.CharField(max_length=10, choices=Q6_CHOICES, verbose_name="Preferred type of meeting place for your religious gatherings")
-    q7 = models.CharField(max_length=10, choices=Q7_CHOICES, verbose_name="Does sitting with people of the opposite sex distract you from the service?")
-    q8 = models.CharField(max_length=10, choices=Q8_CHOICES, verbose_name="Do you want your place of worship to open during non-service times for personal prayer?")
+    q6 = models.CharField(max_length=10, choices=Q6_CHOICES,
+                          verbose_name="Preferred type of meeting place for your religious gatherings")
+    q7 = models.CharField(max_length=10, choices=Q7_CHOICES,
+                          verbose_name="Does sitting with people of the opposite sex distract you from the service?")
+    q8 = models.CharField(max_length=10, choices=Q8_CHOICES,
+                          verbose_name="Do you want your place of worship to open during non-service times for "
+                                       "personal prayer?")
     q9 = models.CharField(max_length=10, choices=Q9_CHOICES, verbose_name="Preferred method of joining a religion")
-    q10 = models.CharField(max_length=10, choices=Q10_CHOICES, verbose_name="How do you think the world/universe was created?")
-    q11 = models.CharField(max_length=10, choices=Q11_CHOICES, verbose_name="Do you wish to attain spiritual enlightment through you or religious authorities?")
+    q10 = models.CharField(max_length=10, choices=Q10_CHOICES,
+                           verbose_name="How do you think the world/universe was created?")
+    q11 = models.CharField(max_length=10, choices=Q11_CHOICES,
+                           verbose_name="Do you wish to attain spiritual enlightenment through you or religious "
+                                        "authorities?")
 
     class Meta:
         verbose_name = "User response"
 
 
 class ResponseForm(ModelForm):
-    q1 = forms.ChoiceField(label="What do you believe happens after you die?", choices=Q1_CHOICES, widget=forms.RadioSelect)
+    q1 = forms.ChoiceField(label="What do you believe happens after you die?", choices=Q1_CHOICES,
+                           widget=forms.RadioSelect)
     q2 = forms.ChoiceField(label="How many deities are in your religion?", choices=Q2_CHOICES, widget=forms.RadioSelect)
     q3 = forms.ChoiceField(label="Types And Amount Of Prayer?", choices=Q3_CHOICES, widget=forms.RadioSelect)
-    q4 = forms.MultipleChoiceField(label="What kind of rules do you find acceptable?", choices=Q4_CHOICES, widget=forms.CheckboxSelectMultiple)
-    q5 = forms.ChoiceField(label="Do you want to travel/go on a pilgrimage?", choices=Q5_CHOICES, widget=forms.RadioSelect)
-    q6 = forms.ChoiceField(label="Preferred type of meeting place for your religious gatherings",choices=Q6_CHOICES, widget=forms.RadioSelect)
-    q7 = forms.ChoiceField(label="Does sitting with people of the opposite sex distract you from the service?",choices=Q7_CHOICES, widget=forms.RadioSelect)
-    q8 = forms.ChoiceField(label="Do you want your place of worship to open during non-service times for personal prayer?",choices=Q8_CHOICES, widget=forms.RadioSelect)
-    q9 = forms.ChoiceField(label="Preferred method of joining a religion",choices=Q9_CHOICES, widget=forms.RadioSelect)
-    q10 = forms.ChoiceField(label="How do you think the world/universe was created?",choices=Q10_CHOICES, widget=forms.RadioSelect)
-    q11 = forms.ChoiceField(label="Do you wish to attain spiritual enlightment through you or religious authorities?",choices=Q11_CHOICES, widget=forms.RadioSelect)
+    q4 = forms.MultipleChoiceField(label="What kind of rules do you find acceptable?", choices=Q4_CHOICES,
+                                   widget=forms.CheckboxSelectMultiple)
+    q5 = forms.ChoiceField(label="Do you want to travel/go on a pilgrimage?", choices=Q5_CHOICES,
+                           widget=forms.RadioSelect)
+    q6 = forms.ChoiceField(label="Preferred type of meeting place for your religious gatherings", choices=Q6_CHOICES,
+                           widget=forms.RadioSelect)
+    q7 = forms.ChoiceField(label="Does sitting with people of the opposite sex distract you from the service?",
+                           choices=Q7_CHOICES, widget=forms.RadioSelect)
+    q8 = forms.ChoiceField(
+        label="Do you want your place of worship to open during non-service times for personal prayer?",
+        choices=Q8_CHOICES, widget=forms.RadioSelect)
+    q9 = forms.ChoiceField(label="Preferred method of joining a religion", choices=Q9_CHOICES, widget=forms.RadioSelect)
+    q10 = forms.ChoiceField(label="How do you think the world/universe was created?", choices=Q10_CHOICES,
+                            widget=forms.RadioSelect)
+    q11 = forms.ChoiceField(label="Do you wish to attain spiritual enlightenment through you or religious authorities?",
+                            choices=Q11_CHOICES, widget=forms.RadioSelect)
 
     class Meta:
         model = Response
         fields = ['name', 'q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9', 'q10', 'q11']
-
