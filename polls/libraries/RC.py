@@ -4,9 +4,12 @@ test_input = ast.literal_eval("{'csrfmiddlewaretoken': ['Fkb5qYMZt8LLD1g2tAGJx75
 {'csrfmiddlewaretoken': ['KlCJuH5iXZc9pv8oazVoOBMEQj6vLwdCgyj3vN4ijZgWPUkkW5iCli0ec71wd8J2'], 'name': ['bob'], 'q1': ['1'], 'q2': ['1'], 'q3': ['3'], 'q4': ['2', '5'], 'q5': ['1'], 'q6': ['3'], 'q7': ['2'], 'q8': ['1'], 'q9': ['1'], 'q10': ['1'], 'q11': ['1']}
 #test_input = {'csrfmiddlewaretoken': ['vGnj15zAFhdM0P24iDGL3nQQY2hCzIDRQpEzbmG0qWJ9JVAX93x4Zf0Hxbua4xLJ'], 'name': ['heheh'], 'q1': ['1'], 'q2': ['2'], 'q3': ['2'], 'q5': ['2'], 'q6': ['3'], 'q7': ['2'], 'q8': ['2'], 'q9': ['2'], 'q10': ['1'], 'q11': ['1']}
 #test_input = {'csrfmiddlewaretoken': ['RqtSdaPK0HCkFWGWDA2IvxK5uTDsa1xGacs0ObB803i6Gx17uheKXmtAJwnzZRtV'], 'name': ['jeff'], 'q1': ['2', '3'], 'q2': ['2', '4'], 'q3': ['1'], 'q4': ['3'], 'q5': ['2'], 'q6': ['1'], 'q7': ['1'], 'q8': ['2'], 'q9': ['1'], 'q10': ['1'], 'q11': ['1']}
+global final_information
 final_information = {}
 
 religions = ["Basedism", "Hinduism", "Buddhism", "Sikhism", "Christianity", "Islam", "Judaism"]
+
+global religion_pro_cons
 
 religion_pro_cons = {
     "Basedism" : {
@@ -38,6 +41,41 @@ religion_pro_cons = {
         "con" : []
     }
 }
+
+def reset():
+    global final_information
+    final_information = {}
+    global religion_pro_cons
+    religion_pro_cons = {
+        "Basedism" : {
+            "pro" : [],
+            "con" : []
+        },
+        "Hinduism" : {
+            "pro" : [],
+            "con" : []
+        },
+        "Buddhism" : {
+            "pro" : [],
+            "con" : []
+        },
+        "Sikhism" : {
+            "pro" : [],
+            "con" : []
+        },
+        "Christianity" : {
+            "pro" : [],
+            "con" : []
+        },
+        "Islam" : {
+            "pro" : [],
+            "con" : []
+        },
+        "Judaism" : {
+            "pro" : [],
+            "con" : []
+        }
+    }
 
 questions = [
     "What happens after death?",
@@ -228,6 +266,7 @@ def get_top() -> list:
 
 def exec(form_input: dict) -> None:
     #add something to get answers in a list
+    reset()
     answers = make_answers(form_input)
     add_answers(answers)
     make_pro_con_dict()
@@ -254,7 +293,8 @@ def exec(form_input: dict) -> None:
 # thing = translate_to_stupid(test_input)
 # print(thing)
 if __name__ == "__main__":
-    print(exec(test_input)[0])
+    for i in range(10):
+        print(exec(test_input)[0])
 
 
 #{1: [False, True, True], 2: [False, True, False, True], 3: [True, False, False, False], 4: [False, False, True, False, False, False, False], 5: [False, True], 6: [True, False, False], 7: [True, False], 8: [False, True], 9: [True, False, False], 10: [True, False, False], 11: [True, False]} 
