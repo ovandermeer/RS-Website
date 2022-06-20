@@ -1,8 +1,3 @@
-import json
-from typing import Dict
-
-#input file path to the json where the answers are coming from
-file_path = r"test.json"
 
 test_input = {'csrfmiddlewaretoken': ['RqtSdaPK0HCkFWGWDA2IvxK5uTDsa1xGacs0ObB803i6Gx17uheKXmtAJwnzZRtV'], 'name': ['jeff'], 'q1': ['2', '3'], 'q2': ['2', '4'], 'q3': ['1'], 'q4': ['3'], 'q5': ['2'], 'q6': ['1'], 'q7': ['1'], 'q8': ['2'], 'q9': ['1'], 'q10': ['1'], 'q11': ['1']}
 final_information = {}
@@ -46,13 +41,14 @@ questions = [
     "Types and amount of prayer?",
     "What kind of restrictions are you alright with?",
     "Do you want to travel/go on a pilgrimage?",
-    "Perfered type of meeting place for your relgious gatherings",
+    "Preferred type of meeting place for your religious gatherings",
     "Does sitting with people of the opposite sex distract you from the service?",
     "Do you want your place of worship to open during non-service times for personal prayer?",
-    "Perfered method of joining a religion",
+    "Preferred method of joining a religion",
     "How do you think the world/universe was created?",
-    "Do you wish to attain spiritual enlightment through you or religious authorities?"
+    "Do you wish to attain spiritual enlightenment through you or religious authorities?"
 ]
+
 
 quiz = {
     1 : ["Reincarnation", "Go to a holy place", "Nothing"],
@@ -138,15 +134,15 @@ def get_pro_con_ans(coord):
     return_value = {title : answer}
     return return_value
 
-def test_thing():
-    for i in religion_pro_cons:
-        print(i)
-        print("Pros")
-        for j in religion_pro_cons[i]["pro"]:
-            print(get_pro_con_ans(j))
-        print("Cons")
-        for j in religion_pro_cons[i]["con"]:
-            print(get_pro_con_ans(j))
+# def test_thing():
+#     for i in religion_pro_cons:
+#         # print(i)
+#         # print("Pros")
+#         for j in religion_pro_cons[i]["pro"]:
+#             print(get_pro_con_ans(j))
+#         print("Cons")
+#         for j in religion_pro_cons[i]["con"]:
+#             print(get_pro_con_ans(j))
 
 def make_under(word: str) -> str:
     return len(word) * "-"
@@ -154,24 +150,40 @@ def make_under(word: str) -> str:
 def get_result() -> str:
     result = ""
     for i in religion_pro_cons:
-        result += f"{i}\n{make_under(i)}\nPros\n"
+        result += f"<rel>{i}<rel>\n<underline>{make_under(i)}<underline>\n<subtitle>Pros<subtitle>\n<content>"
         #key_list = []
+        prev_key = ""
         for j in religion_pro_cons[i]["pro"]:
             pro_dict = get_pro_con_ans(j)
             #print(pro_dict)
             key = list(pro_dict.keys())[0]
             #print(key, pro_dict)
             val = pro_dict[key]
-            result += f"""  {key}
+            #print(prev_key, "prev", key, "key")
+            if prev_key == key:
+                result += f"""
+    -{val}"""
+            else:
+                result += f"""  {key}
     -{val}\n"""
-        result += f"Cons\n"
+            prev_key = key
+        result += f"<content><subtitle>Cons\n<content>"
+        prev_key = ""
         for j in religion_pro_cons[i]["con"]:
             con_dict = get_pro_con_ans(j)
             key = list(con_dict.keys())[0]
             val = con_dict[key]
-            result += f"""  {key}
+            if prev_key == key:
+                result += f"""
+    -{val}"""
+            else:
+                #result = result[:-1]
+                #print(result[-5:])
+                result += f"""  {key}
     -{val}\n"""
-        result += "\n"
+            prev_key = key
+            
+        result += "<content> \n"
     return result[:-2]
 
 def add_answers(answers: list) -> None:
@@ -235,7 +247,8 @@ def exec(form_input: dict) -> None:
 # print(get_result())
 # thing = translate_to_stupid(test_input)
 # print(thing)
-#print(exec(test_input))
+if __name__ == "main":
+    print(exec(test_input)[0])
 
 
 #{1: [False, True, True], 2: [False, True, False, True], 3: [True, False, False, False], 4: [False, False, True, False, False, False, False], 5: [False, True], 6: [True, False, False], 7: [True, False], 8: [False, True], 9: [True, False, False], 10: [True, False, False], 11: [True, False]} 
