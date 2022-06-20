@@ -143,16 +143,26 @@ svg {
 
 /*=quiz=*/
 
-.myForm input,
+.myForm label,
 .myForm select {
   justify-content: left;
   display: block;
   margin: 10px;
   width: 100%;
   padding: 12px 20px;
-  margin: 8px 0;
   display: inline-block;
-  border: 1px solid #ccc;
+  /*border: 1px solid #ccc;*/
   border-radius: 4px;
   box-sizing: border-box;
+}
+.myForm .question {
+    position: relative;
+    left: -28px;
+}
+.myForm input[type=text] {
+    width: 200px;
+    height: 40px
+}
+.myForm input[type=submit] {
+    width: 200px;
 }

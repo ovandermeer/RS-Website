@@ -1,9 +1,8 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-
 from .models import ResponseForm
-
 from polls.libraries.RC import exec as generate_religion
+import ast
 
 
 def get_name(request):
@@ -17,10 +16,23 @@ def get_name(request):
             # ...
             # redirect to a new URL:
         print(form.data)
-        print(generate_religion(form.data)[0])
+
+        formData = str(form.data)
+
+        formData = formData.split("{")[1]
+        formData = formData.split("}")[0]
+        formData = "{" + formData + "}"
+
+        print(formData)
+
+        formResults = generate_religion(ast.literal_eval(formData))[0]
+
+        formResults = formResults.replace("\n", "<br />")
+
+        print(formResults)
 
         # form.save()
-        return HttpResponseRedirect('results/')
+        return render(request, 'polls/result.html', {'results': formResults})
 
     # if a GET (or any other method) we'll create a blank form
     else:
@@ -29,4 +41,4 @@ def get_name(request):
     return render(request, 'polls/detail.html', {'form': form})
 
 def results(request):
-    pass
+    return render(request, 'polls/result.html', {})

@@ -8,7 +8,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!--<link rel="stylesheet" href="./css/styles.css" />-->
-  <link rel="stylesheet" href="{% static 'main/css/styles.css' %}?version=1.6" />
+  <link rel="stylesheet" href="{% static 'main/css/styles.css' %}?version=1.4" />
   <title>Basedism</title>
 </head>
 
@@ -27,23 +27,8 @@
   </header>
   <div class="wrapper">
     <div class="home" id="home">
-
-<div class="myForm">
-        <form action="/form/" method="post">
-            {% csrf_token %}
-            {% for field in form %}
-                <label class="question">{{ field.label }}</label>
-                {{ field }}
-{#                {% for option in field %}#}
-{#                    {{ option }}#}
-{#                {% endfor %}#}
-        {% endfor %}
-
-            <input type="submit" value="Submit">
-        </form>
-</div>
-    </div>
-  </div>
+{% autoescape off %}
+{{ results }}
+{% endautoescape %}
 </body>
-
 </html>
