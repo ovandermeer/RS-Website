@@ -15,15 +15,12 @@ def get_name(request):
             # process the data in form.cleaned_data as required
             # ...
             # redirect to a new URL:
-        print(form.data)
 
         formData = str(form.data)
 
         formData = formData.split("{")[1]
         formData = formData.split("}")[0]
         formData = "{" + formData + "}"
-
-        print(formData)
 
         formResults = generate_religion(ast.literal_eval(formData))[0]
 
