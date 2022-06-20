@@ -194,7 +194,7 @@ def make_under(word: str) -> str:
 def get_result() -> str:
     result = ""
     for i in religion_pro_cons:
-        result += f"<rel>{i}<rel>\n<underline>{make_under(i)}<underline>\n<subtitle>Pros<subtitle>\n<content>"
+        result += f"<rel>{i}</rel>\n<underline>{make_under(i)}</underline>\n<subtitle>Pros</subtitle>\n<content>"
         #key_list = []
         prev_key = ""
         for j in religion_pro_cons[i]["pro"]:
@@ -221,15 +221,15 @@ def get_result() -> str:
             if prev_key == key:
                 result = result[:-1]
                 result += f"""
-    -{val}\n"""
+    -<val>{val}</val>\n"""
             else:
                 #result = result[:-1]
                 #print(result[-5:])
-                result += f"""  {key}
-    -{val}\n"""
+                result += f"""  <key>{key}</key>
+    -<val>{val}</val>\n"""
             prev_key = key
             
-        result += "<content> \n"
+        result += "</content> \n"
     return result[:-2]
 
 def add_answers(answers: list) -> None:
