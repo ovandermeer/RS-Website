@@ -18,15 +18,21 @@ def get_name(request):
 
         formData = str(form.data)
 
+        # print(formData)
+
         formData = formData.split("{")[1]
         formData = formData.split("}")[0]
         formData = "{" + formData + "}"
 
+        # print(formData)
+
         formResults = generate_religion(ast.literal_eval(formData))[0]
+
+        # print(formResults)
 
         formResults = formResults.replace("\n", "<br />")
 
-        print(formResults)
+        # print(formResults)
 
         # form.save()
         return render(request, 'polls/result.html', {'results': formResults})
