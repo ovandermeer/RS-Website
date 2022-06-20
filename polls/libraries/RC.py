@@ -205,6 +205,7 @@ def get_result() -> str:
             val = pro_dict[key]
             #print(prev_key, "prev", key, "key")
             if prev_key == key:
+                result = result[:-1]
                 result += f"""
     -{val}"""
             else:
@@ -218,8 +219,9 @@ def get_result() -> str:
             key = list(con_dict.keys())[0]
             val = con_dict[key]
             if prev_key == key:
+                result = result[:-1]
                 result += f"""
-    -{val}"""
+    -{val}\n"""
             else:
                 #result = result[:-1]
                 #print(result[-5:])
