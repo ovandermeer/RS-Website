@@ -1,5 +1,9 @@
+import ast
 
-test_input = {'csrfmiddlewaretoken': ['RqtSdaPK0HCkFWGWDA2IvxK5uTDsa1xGacs0ObB803i6Gx17uheKXmtAJwnzZRtV'], 'name': ['jeff'], 'q1': ['2', '3'], 'q2': ['2', '4'], 'q3': ['1'], 'q4': ['3'], 'q5': ['2'], 'q6': ['1'], 'q7': ['1'], 'q8': ['2'], 'q9': ['1'], 'q10': ['1'], 'q11': ['1']}
+test_input = ast.literal_eval("{'csrfmiddlewaretoken': ['Fkb5qYMZt8LLD1g2tAGJx75TUS6vadOP03slAfTpeNh8m7OVk0x2tZfKt1j3F2WH'], 'name': ['hy3h3gh3h'], 'q1': ['1'], 'q2': ['1'], 'q3': ['1'], 'q4': ['1', '7'], 'q5': ['1'], 'q6': ['1'], 'q7': ['1'], 'q8': ['1'], 'q9': ['1'], 'q10': ['1'], 'q11': ['1']}")
+{'csrfmiddlewaretoken': ['KlCJuH5iXZc9pv8oazVoOBMEQj6vLwdCgyj3vN4ijZgWPUkkW5iCli0ec71wd8J2'], 'name': ['bob'], 'q1': ['1'], 'q2': ['1'], 'q3': ['3'], 'q4': ['2', '5'], 'q5': ['1'], 'q6': ['3'], 'q7': ['2'], 'q8': ['1'], 'q9': ['1'], 'q10': ['1'], 'q11': ['1']}
+#test_input = {'csrfmiddlewaretoken': ['vGnj15zAFhdM0P24iDGL3nQQY2hCzIDRQpEzbmG0qWJ9JVAX93x4Zf0Hxbua4xLJ'], 'name': ['heheh'], 'q1': ['1'], 'q2': ['2'], 'q3': ['2'], 'q5': ['2'], 'q6': ['3'], 'q7': ['2'], 'q8': ['2'], 'q9': ['2'], 'q10': ['1'], 'q11': ['1']}
+#test_input = {'csrfmiddlewaretoken': ['RqtSdaPK0HCkFWGWDA2IvxK5uTDsa1xGacs0ObB803i6Gx17uheKXmtAJwnzZRtV'], 'name': ['jeff'], 'q1': ['2', '3'], 'q2': ['2', '4'], 'q3': ['1'], 'q4': ['3'], 'q5': ['2'], 'q6': ['1'], 'q7': ['1'], 'q8': ['2'], 'q9': ['1'], 'q10': ['1'], 'q11': ['1']}
 final_information = {}
 
 religions = ["Basedism", "Hinduism", "Buddhism", "Sikhism", "Christianity", "Islam", "Judaism"]
@@ -115,6 +119,8 @@ def make_pro_con_dict() -> None:
     for index, j in enumerate(final_information.values()):
         key = index + 1
         for ind, i in enumerate(ans_key[key]):
+            print(j, ind)
+            print(ans_key[key], key)
             if j[ind]:
                 for rel in i:
                     religion = get_rel(rel)
@@ -247,7 +253,7 @@ def exec(form_input: dict) -> None:
 # print(get_result())
 # thing = translate_to_stupid(test_input)
 # print(thing)
-if __name__ == "main":
+if __name__ == "__main__":
     print(exec(test_input)[0])
 
 
