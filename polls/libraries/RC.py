@@ -194,7 +194,7 @@ def make_under(word: str) -> str:
 def get_result() -> str:
     result = ""
     for i in religion_pro_cons:
-        result += f"<rel>{i}</rel>\n<underline>{make_under(i)}</underline>\n<subtitle>Pros</subtitle>\n<content>"
+        result += f"<religion>{i}</religion>\n{make_under(i)}\n<pros>Pros</pros>\n<survey_ans>"
         #key_list = []
         prev_key = ""
         for j in religion_pro_cons[i]["pro"]:
@@ -207,12 +207,12 @@ def get_result() -> str:
             if prev_key == key:
                 result = result[:-1]
                 result += f"""
-    -{val}"""
+    -<answers>{val}</answers>"""
             else:
-                result += f"""  {key}
-    -{val}\n"""
+                result += f"""  <questions>{key}</questions>
+    -<answers>{val}</answers>\n"""
             prev_key = key
-        result += f"<content><subtitle>Cons\n<content>"
+        result += f"<cons>Cons\n</cons>"
         prev_key = ""
         for j in religion_pro_cons[i]["con"]:
             con_dict = get_pro_con_ans(j)
@@ -221,15 +221,15 @@ def get_result() -> str:
             if prev_key == key:
                 result = result[:-1]
                 result += f"""
-    -<val>{val}</val>\n"""
+    -<answers>{val}</answers>\n"""
             else:
                 #result = result[:-1]
                 #print(result[-5:])
-                result += f"""  <key>{key}</key>
-    -<val>{val}</val>\n"""
+                result += f"""  <questions>{key}</questions>
+    -<answers>{val}</answers>\n"""
             prev_key = key
             
-        result += "</content> \n"
+        result += "</survey_ans> \n"
     return result[:-2]
 
 def add_answers(answers: list) -> None:
