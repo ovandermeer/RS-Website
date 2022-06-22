@@ -115,6 +115,10 @@ svg {
   margin-left: 6rem;
 }
 
+.wrapper-section {
+  width: 100%;
+}
+
 .acceptance {
   clip-path: circle(50%);
   height: 270px;
@@ -139,7 +143,7 @@ svg {
 }
 
 .section {
-  width: 500px;
+  width: 75%;
   float: left;
   margin-left: 6.3px;
   display: grid;
