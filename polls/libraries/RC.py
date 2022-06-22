@@ -189,7 +189,8 @@ def get_pro_con_ans(coord):
 #             print(get_pro_con_ans(j))
 
 def make_under(word: str) -> str:
-    return len(word) * "-"
+    # return len(word) * "-"
+    return ""
 
 def get_result() -> str:
     result = ""
@@ -212,7 +213,7 @@ def get_result() -> str:
                 result += f"""  <questions>{key}</questions>
     -<answers>{val}</answers>\n"""
             prev_key = key
-        result += f"<cons>Cons\n</cons>"
+        result += f"<cons>Cons</cons>\n"
         prev_key = ""
         for j in religion_pro_cons[i]["con"]:
             con_dict = get_pro_con_ans(j)

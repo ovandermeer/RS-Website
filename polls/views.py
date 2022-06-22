@@ -28,9 +28,21 @@ def get_name(request):
 
         formResults = generate_religion(ast.literal_eval(formData))[0]
 
-        # print(formResults)
+        print(formResults)
 
         formResults = formResults.replace("\n", "<br />")
+        formResults = formResults.replace("<religion>", "<h2>")
+        formResults = formResults.replace("</religion>", "</h2>")
+        # formResults = formResults.replace("--------", "")
+        formResults = formResults.replace("<br /><br />", "")
+        formResults = formResults.replace("<pros>", "<h3>")
+        formResults = formResults.replace("</pros><br />", "</h3>")
+        formResults = formResults.replace("<cons>", "<h3>")
+        formResults = formResults.replace("</cons><br />", "</h3>")
+        formResults = formResults.replace("<answers>", "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp")
+        formResults = formResults.replace("</answers>", "")
+        formResults = formResults.replace("<questions>", "")
+        formResults = formResults.replace("</questions>", "")
 
         # print(formResults)
 
