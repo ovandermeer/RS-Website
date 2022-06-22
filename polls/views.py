@@ -35,18 +35,20 @@ def get_name(request):
 
         religionList = []
 
-        i = 0
-        while i < 6:
-            i += 1
-            myFormResults = formResults.split("</religion>", 1)[0]
-            myFormResults = myFormResults + "</religion>"
-            religionName = re.search('<religion>(.*)</religion>', formResults)
-            formResults = formResults.replace("<religion>", f"<h2 id=\"{religionName.group(1)}\">", 1)
-            formResults = formResults.replace("</religion>", "</h2>", 1)
+        # i = 0
+        # while i < 6:
+        #     i += 1
+        #     myFormResults = formResults.split("</religion>", 1)[0]
+        #     myFormResults = myFormResults + "</religion>"
+        #     religionName = re.search('<religion>(.*)</religion>', formResults)
+        #     formResults = formResults.replace("<religion>", f"<h2 id=\"{religionName.group(1)}\">", 1)
+        #     formResults = formResults.replace("</religion>", "</h2>", 1)
             # religionList.append(religionName)
 
         formResults = formResults.replace("\n", "<br />")
         # formResults = formResults.replace("--------", "")
+        formResults = formResults.replace("<religion>", f"<h2>", 1)
+        formResults = formResults.replace("</religion>", "</h2>", 1)
         formResults = formResults.replace("<br /><br />", "")
         formResults = formResults.replace("<pros>", "<h3>")
         formResults = formResults.replace("</pros><br />", "</h3>")
