@@ -27,9 +27,9 @@ Q4_CHOICES = (
     ('1', 'Eating And Drinking Restrictions'),
     ('2', 'Fasting'),
     ('3', 'Who you can marry'),
-    ('4', 'Pre-marital sex'),
-    ('5', 'Virtually None'),
-    ('6', 'Cutting hair'),
+    ('4', 'No Pre-marital sex'),
+    ('5', 'Virtually no restrictions'),
+    ('6', 'No Cutting hair'),
     ('7', 'Gender Identity/Sexuality'),
 )
 
@@ -79,7 +79,7 @@ class Response(models.Model):
     q1 = models.CharField(max_length=10, choices=Q1_CHOICES, verbose_name="What do you believe happens after you die?")
     q2 = models.CharField(max_length=10, choices=Q2_CHOICES, verbose_name="How many deities are in your religion?")
     q3 = models.CharField(max_length=10, choices=Q3_CHOICES, verbose_name="Types And Amount Of Prayer?")
-    q4 = models.CharField(max_length=10, choices=Q4_CHOICES, verbose_name="What kind of rules do you find acceptable?")
+    q4 = models.CharField(max_length=10, choices=Q4_CHOICES, verbose_name="What kind of rules and restrictions do you find acceptable?")
     q5 = models.CharField(max_length=10, choices=Q5_CHOICES, verbose_name="Do you want to travel/go on a pilgrimage?")
     q6 = models.CharField(max_length=10, choices=Q6_CHOICES,
                           verbose_name="Preferred type of meeting place for your religious gatherings")
@@ -104,7 +104,7 @@ class ResponseForm(ModelForm):
                            widget=forms.RadioSelect)
     q2 = forms.ChoiceField(label="How many deities are in your religion?", choices=Q2_CHOICES, widget=forms.RadioSelect)
     q3 = forms.ChoiceField(label="Types And Amount Of Prayer?", choices=Q3_CHOICES, widget=forms.RadioSelect)
-    q4 = forms.MultipleChoiceField(label="What kind of rules do you find acceptable?", choices=Q4_CHOICES,
+    q4 = forms.MultipleChoiceField(label="What kind of rules and restrictions do you find acceptable?", choices=Q4_CHOICES,
                                    widget=forms.CheckboxSelectMultiple)
     q5 = forms.ChoiceField(label="Do you want to travel/go on a pilgrimage?", choices=Q5_CHOICES,
                            widget=forms.RadioSelect)
