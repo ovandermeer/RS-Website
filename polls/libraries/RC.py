@@ -196,7 +196,7 @@ def get_result(sorted_reli) -> str:
             if prev_key == key:
                 result = result[:-1]
                 result += f"""
-    -<answers>{val}</answers>"""
+    -<answers>{val}</answers>\n"""
             else:
                 result += f"""  <questions>{key}</questions>
     -<answers>{val}</answers>\n"""
@@ -261,5 +261,5 @@ def exec(form_input: dict) -> None:
     
 
 if __name__ == "__main__":
-    for i in range(10):
+    for i in range(1):
         print(exec(test_input)[0])
