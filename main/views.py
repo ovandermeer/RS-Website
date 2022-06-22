@@ -11,3 +11,6 @@ def deities(request):
 
 def rituals(request):
     return render(request, 'main/rituals.html')
+
+def about(request):
+    return render(request, 'main/about.html')

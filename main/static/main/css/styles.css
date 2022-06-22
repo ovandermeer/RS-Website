@@ -133,10 +133,9 @@ svg {
 }
 
 .Godp {
-  width: 450px;
+  width: auto;
   text-align: center;
   word-wrap: break-word;
-  margin-left: 1.7rem;
 }
 
 .section {
