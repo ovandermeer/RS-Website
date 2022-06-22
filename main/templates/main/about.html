@@ -2,30 +2,56 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{% static 'main/css/styles.css' %}" />
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="{% static 'main/css/styles.css' %}?version=1"/>
     <title>Deities - Basedism</title>
-  </head>
-  <body>
-    <header class="navhead">
-      <a class="logo" href="{% url 'main:index' %}">Basedism</a>
-      <nav>
+</head>
+<body>
+<header class="navhead">
+    <a class="logo" href="{% url 'main:index' %}">Basedism</a>
+    <nav>
         <ul class="nav-area top-nav">
-          <li><a href="{% url 'main:index' %}">Home</a></li>
-          <li><a href="{%  url 'main:deities' %}">Deities</a></li>
-          <li><a href="{% url 'main:rituals' %}">Rituals</a></li>
-          <li><a href="{% url 'polls:form' %}">Religion Quiz</a></li>
-          <li><a href="{% url 'main:about' %}">About</a></li>
+            <li><a href="{% url 'main:index' %}">Home</a></li>
+            <li><a href="{% url 'main:deities' %}">Deities</a></li>
+            <li><a href="{% url 'main:rituals' %}">Rituals</a></li>
+            <li><a href="{% url 'polls:form' %}">Religion Quiz</a></li>
+            <li><a href="{% url 'main:about' %}">About</a></li>
         </ul>
-      </nav>
-    </header>
-    <div class="k">
-        <h1>
-            kachow
-        </h1>
-    </div>
-  </body>
+    </nav>
+</header>
+<br>
+<br>
+<div class="aboutWrapper">
+<h1 id="the-basics-of-basedism">The basics of Basedism</h1>
+<h3 id="pilgrimage-islam-">Pilgrimage (Islam)</h3>
+<p>All those who attend Basedism are recommended to go on a pilgrimage to Hang Son Doong Cave in Vietnam.</p>
+<h3 id="entrance-into-community-buddhism-">Entrance into community (Buddhism)</h3>
+<p>To join Basedism, you only have to show up. There is no specific ritual to become a member of Basedism, we welcome
+    all into our community.</p>
+<h3 id="focus-on-peacekeeping-and-community-building-sikhism-christianity-">Focus on peacekeeping and community building
+    (Sikhism, christianity?)</h3>
+<p>Inclusivity and acceptance of others is a major pillar of Basedism, especially for marginalized groups. Basedism is
+    built on the pillars of &quot;radical acceptance&quot;, and assuming the best of people. Outside of community,
+    Basedism is very focused on pacifism, following Jesus&#39; teachings to &quot;love your neighbor as
+    yourself&quot;.</p>
+<h3 id="golden-rule">Golden Rule</h3>
+<p>Accept others for their differences, because without them we are nothing.</p>
+<h3 id="what-happens-after-death-buddhism-hinduism-">What happens after death? (Buddhism, Hinduism)</h3>
+<p>Followers of Basedism believe in reincarnation after death. We believe that members will eventually be reborn as
+    another human, which is our basis for our stance on non-violence</p>
+<h3 id="views-on-violence-mennonite-somewhat-">Views on violence (Mennonite, somewhat)</h3>
+<p>The basic Basedism view of violence is as follows: &quot;Violence does nothing but harm&quot;. Since followers of
+    Basedism believe that anyone could be reborn as anyone around us, we don&#39;t wish to inflict harm on our
+    neighbor.</p>
+<h3 id="ritual-and-ritual-locations-buddhism-">Ritual and ritual locations (Buddhism)</h3>
+<p>The main ritual of Basesism is meditation. Meditation is a very core value of Basedism, as we believe that it&#39;s
+    important for our members to always be relaxed and focused. Our rituals often take place at the houses of different
+    members. This is representative of the strong bonds of trust our members have with each other, makes meetings more
+    casual, and encourages making connections with other members of Basedism.</p>
+</div>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#e5e5ff" fill-opacity="1" d="M0,192L48,170.7C96,149,192,107,288,106.7C384,107,480,149,576,186.7C672,224,768,256,864,250.7C960,245,1056,203,1152,202.7C1248,203,1344,245,1392,266.7L1440,288L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
+</body>
 </html>

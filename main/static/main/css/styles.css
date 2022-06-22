@@ -183,3 +183,11 @@ svg {
 .myForm input[type="submit"] {
   width: 200px;
 }
+
+/*========= About ========*/
+.aboutWrapper {
+  font-size: 15px;
+  text-align: center;
+  padding-left: 25%;
+  padding-right: 25%;
+}

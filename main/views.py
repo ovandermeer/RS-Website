@@ -14,3 +14,6 @@ def rituals(request):
 
 def about(request):
     return render(request, 'main/about.html')
+
+def based(request):
+    return render(request, 'main/based.html')
