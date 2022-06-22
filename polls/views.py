@@ -69,7 +69,7 @@ def get_name(request):
 
         # form.save()
         # return render(request, 'polls/result.html', {'results': formResults, 'selectedReligion': RCresults[1][0], 'religion1': religion1, 'religion2': religion2, 'religion3': religion3, 'religion4': religion4, 'religion5': religion5, 'religion6': religion6, 'religion7': religion7})
-        return render(request, 'polls/result.html', {'results': formResults, 'selectedReligion': RCresults[1][0]})
+        return render(request, 'polls/result.html', {'results': formResults, 'selectedReligion': RCresults[1]})
 
     # if a GET (or any other method) we'll create a blank form
     else:
