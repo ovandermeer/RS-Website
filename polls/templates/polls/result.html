@@ -27,7 +27,8 @@
   </header>
   <div class="wrapper">
     <div class="homie" id="homie">
-{% autoescape off %}
+        <h1>Recommended religion for you: {{ selectedReligion }}!</h1>
+        {% autoescape off %}
 {{ results }}
 {% endautoescape %}
     </div>
