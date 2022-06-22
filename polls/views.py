@@ -47,7 +47,7 @@ def get_name(request):
 
         formResults = formResults.replace("\n", "<br />")
         # formResults = formResults.replace("--------", "")
-        formResults = formResults.replace("<religion>", f"<h2>")
+        formResults = formResults.replace("<religion>", "<h2>")
         formResults = formResults.replace("</religion>", "</h2>")
         formResults = formResults.replace("<br /><br />", "")
         formResults = formResults.replace("<pros>", "<h3>")
