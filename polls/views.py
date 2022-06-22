@@ -13,9 +13,9 @@ def get_name(request):
         form = ResponseForm(request.POST)
         # check whether it's valid:
         # if form.is_valid():
-            # process the data in form.cleaned_data as required
-            # ...
-            # redirect to a new URL:
+        # process the data in form.cleaned_data as required
+        # ...
+        # redirect to a new URL:
 
         formData = str(form.data)
 
@@ -25,11 +25,20 @@ def get_name(request):
         formData = formData.split("}")[0]
         formData = "{" + formData + "}"
 
-        # print(formData)
+        formData_dict = ast.literal_eval(formData)
 
-        RCresults = generate_religion(ast.literal_eval(formData))
+        print(formData)
+
+        name = formData_dict["name"]
+
+        print(f'NAME: {name}')
+
+        RCresults = generate_religion(formData_dict)
 
         formResults = RCresults[0]
+
+        with open(f"results/results_{name}.txt", 'a+') as f:
+            print(formResults, file=f)
 
         # print(formResults)
 
@@ -43,7 +52,7 @@ def get_name(request):
         #     religionName = re.search('<religion>(.*)</religion>', formResults)
         #     formResults = formResults.replace("<religion>", f"<h2 id=\"{religionName.group(1)}\">", 1)
         #     formResults = formResults.replace("</religion>", "</h2>", 1)
-            # religionList.append(religionName)
+        # religionList.append(religionName)
 
         formResults = formResults.replace("\n", "<br />")
         # formResults = formResults.replace("--------", "")
@@ -54,7 +63,8 @@ def get_name(request):
         formResults = formResults.replace("</pros><br />", "</h3>")
         formResults = formResults.replace("<cons>", "<h3>")
         formResults = formResults.replace("</cons><br />", "</h3>")
-        formResults = formResults.replace("-<answers>", "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp-&nbsp")
+        formResults = formResults.replace("-<answers>",
+                                          "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp-&nbsp")
         formResults = formResults.replace("</answers>", "")
         formResults = formResults.replace("<questions>", "")
         formResults = formResults.replace("</questions>", "")
@@ -78,6 +88,7 @@ def get_name(request):
         form = ResponseForm()
 
     return render(request, 'polls/detail.html', {'form': form})
+
 
 def results(request):
     return render(request, 'polls/result.html', {})
