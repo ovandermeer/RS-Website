@@ -1,11 +1,12 @@
 import ast
+from copy import deepcopy
 
 test_input = ast.literal_eval("{'csrfmiddlewaretoken': ['Fkb5qYMZt8LLD1g2tAGJx75TUS6vadOP03slAfTpeNh8m7OVk0x2tZfKt1j3F2WH'], 'name': ['hy3h3gh3h'], 'q1': ['1'], 'q2': ['1'], 'q3': ['1'], 'q4': ['1', '7'], 'q5': ['1'], 'q6': ['1'], 'q7': ['1'], 'q8': ['1'], 'q9': ['1'], 'q10': ['1'], 'q11': ['1']}")
 {'csrfmiddlewaretoken': ['KlCJuH5iXZc9pv8oazVoOBMEQj6vLwdCgyj3vN4ijZgWPUkkW5iCli0ec71wd8J2'], 'name': ['bob'], 'q1': ['1'], 'q2': ['1'], 'q3': ['3'], 'q4': ['2', '5'], 'q5': ['1'], 'q6': ['3'], 'q7': ['2'], 'q8': ['1'], 'q9': ['1'], 'q10': ['1'], 'q11': ['1']}
-#test_input = {'csrfmiddlewaretoken': ['vGnj15zAFhdM0P24iDGL3nQQY2hCzIDRQpEzbmG0qWJ9JVAX93x4Zf0Hxbua4xLJ'], 'name': ['heheh'], 'q1': ['1'], 'q2': ['2'], 'q3': ['2'], 'q5': ['2'], 'q6': ['3'], 'q7': ['2'], 'q8': ['2'], 'q9': ['2'], 'q10': ['1'], 'q11': ['1']}
-#test_input = {'csrfmiddlewaretoken': ['RqtSdaPK0HCkFWGWDA2IvxK5uTDsa1xGacs0ObB803i6Gx17uheKXmtAJwnzZRtV'], 'name': ['jeff'], 'q1': ['2', '3'], 'q2': ['2', '4'], 'q3': ['1'], 'q4': ['3'], 'q5': ['2'], 'q6': ['1'], 'q7': ['1'], 'q8': ['2'], 'q9': ['1'], 'q10': ['1'], 'q11': ['1']}
+
 global final_information
 final_information = {}
+
 
 religions = ["Basedism", "Hinduism", "Buddhism", "Sikhism", "Christianity", "Islam", "Judaism"]
 
@@ -121,14 +122,12 @@ ans_key = {
 }
 
 def translate_to_stupid(fin):
-    #[[selected answers], {question num : [possible answers]}]
     final = []
     for i in fin:
         if "q" in i:
             select_ans = [int(item) for item in fin[i]]
             question_num = int(i[1:])
             pos_ans = list(range(1,len(ans_key[int(question_num)]) + 1))
-            #print(select_ans, question_num, pos_ans)
             final.append([select_ans, {question_num : pos_ans}])
     return final
 
@@ -142,7 +141,6 @@ def add_answer(question : dict) -> None:
         query_num = i
         break
     new_info = []
-    #print(query, "query", ans_num, "ans_num")
     for i in query.values():
         for j in i:
             for k in query.keys():
@@ -157,19 +155,15 @@ def make_pro_con_dict() -> None:
     for index, j in enumerate(final_information.values()):
         key = index + 1
         for ind, i in enumerate(ans_key[key]):
-            print(j, ind)
-            print(ans_key[key], key)
             if j[ind]:
                 for rel in i:
                     religion = get_rel(rel)
                     religion_pro_cons[religion]["pro"].append([key,ind])
-                    #print(get_rel(rel), "pro")
 
             else:
                 for rel in i:
                     religion = get_rel(rel)
                     religion_pro_cons[religion]["con"].append([key, ind])
-                    #print(get_rel(rel), "con")
 
 def get_pro_con_ans(coord):
     (question,ans) = coord
@@ -178,33 +172,27 @@ def get_pro_con_ans(coord):
     return_value = {title : answer}
     return return_value
 
-# def test_thing():
-#     for i in religion_pro_cons:
-#         # print(i)
-#         # print("Pros")
-#         for j in religion_pro_cons[i]["pro"]:
-#             print(get_pro_con_ans(j))
-#         print("Cons")
-#         for j in religion_pro_cons[i]["con"]:
-#             print(get_pro_con_ans(j))
-
 def make_under(word: str) -> str:
-    # return len(word) * "-"
     return ""
 
-def get_result() -> str:
+def order_religions():
+    new_dict = deepcopy(religion_pro_cons)
+    final = []
+    while new_dict:
+        new_top = get_top(new_dict)
+        final.append(new_top)
+        new_dict.pop(new_top)
+    return final
+
+def get_result(sorted_reli) -> str:
     result = ""
-    for i in religion_pro_cons:
+    for i in sorted_reli:
         result += f"<religion>{i}</religion>\n{make_under(i)}\n<pros>Pros</pros>\n<survey_ans>"
-        #key_list = []
         prev_key = ""
         for j in religion_pro_cons[i]["pro"]:
             pro_dict = get_pro_con_ans(j)
-            #print(pro_dict)
             key = list(pro_dict.keys())[0]
-            #print(key, pro_dict)
             val = pro_dict[key]
-            #print(prev_key, "prev", key, "key")
             if prev_key == key:
                 result = result[:-1]
                 result += f"""
@@ -224,8 +212,6 @@ def get_result() -> str:
                 result += f"""
     -<answers>{val}</answers>\n"""
             else:
-                #result = result[:-1]
-                #print(result[-5:])
                 result += f"""  <questions>{key}</questions>
     -<answers>{val}</answers>\n"""
             prev_key = key
@@ -234,19 +220,17 @@ def get_result() -> str:
     return result[:-2]
 
 def add_answers(answers: list) -> None:
-    #print(answers)
     for i in answers:
-    #    print(i, "i")
         add_answer(i)
 
 def make_answers(fin : dict) -> list:
     return translate_to_stupid(fin)
 
-def get_top() -> list:
+def get_top(reli: dict) -> list:
     count = 0
     top = []
-    for i in religion_pro_cons:
-        cur_count = len(religion_pro_cons[i]["pro"])
+    for i in reli:
+        cur_count = len(reli[i]["pro"])
         if cur_count > count:
             count = cur_count
             top = [i]
@@ -256,49 +240,26 @@ def get_top() -> list:
         lowest_con = 100
         best = []
         for i in top:
-            cur_count = len(religion_pro_cons[i]["con"])
+            cur_count = len(reli[i]["con"])
             if cur_count < lowest_con:
                 lowest_con = cur_count
                 best = [i]
             if cur_count == lowest_con:
                 best.append(i)
         top = list(best)
-    return top
+    return top [0]
     
         
 
 def exec(form_input: dict) -> None:
-    #add something to get answers in a list
     reset()
     answers = make_answers(form_input)
     add_answers(answers)
     make_pro_con_dict()
-    #print(f"final information: {final_information}")
-    return [get_result(), get_top()]
+    new_order = order_religions()
+    return [get_result(new_order), get_top(religion_pro_cons)]
     
 
-
-
-#print(get_pro_con_ans([1,1]))
-
-    
-# test_question = [[1,2], {1 : [1,2,3]}]
-# test_question2 = [[2], {2 : [1,2,3,4]}]
-# test_question3 = [[1,2,3], {3 : [1,2,3,4,5,6]}]
-# add_answer(test_question)
-# add_answer(test_question2)
-# add_answer(test_question3)
-# print(final_information)
-# make_pro_con_dict()
-# # print(religion_pro_cons)
-# # #test_thing()
-# print(get_result())
-# thing = translate_to_stupid(test_input)
-# print(thing)
 if __name__ == "__main__":
     for i in range(10):
         print(exec(test_input)[0])
-
-
-#{1: [False, True, True], 2: [False, True, False, True], 3: [True, False, False, False], 4: [False, False, True, False, False, False, False], 5: [False, True], 6: [True, False, False], 7: [True, False], 8: [False, True], 9: [True, False, False], 10: [True, False, False], 11: [True, False]} 
-#{1: [True, True, False], 2: [False, True, False, False], 3: [True, True, True, False, False, False]}
