@@ -25,12 +25,12 @@ Q3_CHOICES = (
 
 Q4_CHOICES = (
     ('1', 'Eating And Drinking Restrictions'),
-    ('2', 'Fasting'),
-    ('3', 'Who you can marry'),
-    ('4', 'No Pre-marital sex'),
-    ('5', 'Virtually no restrictions'),
-    ('6', 'No Cutting hair'),
-    ('7', 'Gender Identity/Sexuality'),
+    ('2', 'Mandatory fasting'),
+    ('3', 'Restrictions on who you can marry'),
+    ('4', 'No pre-marital sex'),
+    ('5', 'Restrictions on Gender Identity/Sexuality'),
+    ('6', 'Restrictions on Cutting hair'),
+    ('7', 'None of the above'),
 )
 
 Q5_CHOICES = (
@@ -75,7 +75,7 @@ Q11_CHOICES = (
 
 
 class Response(models.Model):
-    name = models.CharField(max_length=100)
+    # name = models.CharField(max_length=100)
     q1 = models.CharField(max_length=10, choices=Q1_CHOICES, verbose_name="What do you believe happens after you die?")
     q2 = models.CharField(max_length=10, choices=Q2_CHOICES, verbose_name="How many deities are in your religion?")
     q3 = models.CharField(max_length=10, choices=Q3_CHOICES, verbose_name="Types And Amount Of Prayer?")
@@ -123,4 +123,5 @@ class ResponseForm(ModelForm):
 
     class Meta:
         model = Response
-        fields = ['name', 'q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9', 'q10', 'q11']
+        # fields = ['name', 'q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9', 'q10', 'q11']
+        fields = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9', 'q10', 'q11']

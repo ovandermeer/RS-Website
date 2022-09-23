@@ -1,1 +1,0 @@
-web: gunicorn RS_Django_Project.wsgi

@@ -13,7 +13,7 @@ body {
   padding: 0;
   margin: 0;
   font-family: "Lato", sans-serif;
-  background-color: #FFFFFC;
+  background-color: #fffffc;
 }
 
 /*=============== Nav ===============*/
@@ -28,6 +28,8 @@ body {
 }
 
 .logo {
+  font-size: 2rem;
+  text-decoration: none;
   cursor: pointer;
   color: black;
   transition: 0.3s;
@@ -63,6 +65,128 @@ body {
 
 /*=============== Landing Header ===============*/
 
+.wrapper {
+  display: block;
+  margin: 100px auto 10px auto;
+  max-width: 1100px;
+}
 
-/*=============== Results ===============*/
+.home {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
 
+.home-header {
+  font-size: 40px;
+  display: block;
+  color: black;
+  margin: auto;
+}
+
+.home-paragraph {
+  font-size: 20px;
+}
+
+.home-img img {
+  clip-path: circle(50%);
+  height: 350px;
+  width: 354px;
+}
+
+svg {
+  display: inline-block;
+}
+
+.vibeo iframe {
+  display: block;
+  float: left;
+  padding: 10px;
+  width: 50%;
+  text-align: center;
+  margin: auto;
+}
+
+/*=============== Diet Pepsi ===============*/
+
+.header {
+  margin-left: 6rem;
+}
+
+.wrapper-section {
+ display: flex;
+ justify-content: space-around;
+ height: auto;
+}
+
+.acceptance {
+  clip-path: circle(50%);
+  height: 270px;
+  width: 274px;
+  margin-left: 20px;
+}
+
+.God {
+  text-align: left;
+  word-wrap: break-word;
+  margin-left: 5rem;
+}
+
+.God h1 {
+  margin-left: 7rem;
+}
+
+.Godp {
+  width: auto;
+  text-align: center;
+  word-wrap: break-word;
+}
+
+.section {
+  width: 75%;
+  float: left;
+  margin-left: 6.3px;
+  display: grid;
+  justify-content: center;
+}
+
+.vibeo {
+  display: block;
+  margin: auto;
+}
+
+/*=quiz=*/
+
+.myForm label,
+.myForm select {
+  justify-content: left;
+  display: block;
+  margin: 10px;
+  width: 100%;
+  padding: 12px 20px;
+  display: inline-block;
+  /*border: 1px solid #ccc;*/
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.myForm .question {
+  position: relative;
+  left: -28px;
+}
+.myForm input[type="text"] {
+  width: 200px;
+  height: 40px;
+}
+.myForm input[type="submit"] {
+  width: 200px;
+}
+
+/*========= About ========*/
+.aboutWrapper {
+  font-size: 15px;
+  text-align: center;
+  padding-left: 25%;
+  padding-right: 25%;
+}

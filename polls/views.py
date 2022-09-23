@@ -25,20 +25,22 @@ def get_name(request):
         formData = formData.split("}")[0]
         formData = "{" + formData + "}"
 
+        if 'q4' not in formData:
+            formData = formData.split("'q5")
+            formData = formData[0] + "'q4': ['7'], 'q5" + formData[1]
+
         formData_dict = ast.literal_eval(formData)
 
-        print(formData)
+        # name = formData_dict["name"]
 
-        name = formData_dict["name"]
-
-        print(f'NAME: {name}')
+        # print(f'NAME: {name}')
 
         RCresults = generate_religion(formData_dict)
 
         formResults = RCresults[0]
 
-        with open(f"results/results_{name}.txt", 'a+') as f:
-            print(formResults, file=f)
+        # with open(f"results/results_{name}.txt", 'a+') as f:
+        #     print(formResults, file=f)
 
         # print(formResults)
 

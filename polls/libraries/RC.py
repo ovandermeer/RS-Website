@@ -97,7 +97,7 @@ quiz = {
     1 : ["Reincarnation", "Go to a holy place", "Nothing"],
     2 : ["One (Monotheistic)", "More than one God (Polytheistic)", "More than one aspect of one God", "None"],
     3 : ["Regimented prayer schedule", "Recommended prayer", "Meditation", "Group prayer"],
-    4 : ["Eating And Drinking Restrictions", "Fasting", "Who you can marry", "Pre-marital sex", "Virtually None", "Cutting hair", "Gender Identity/Sexuality"],
+    4 : ["Eating And Drinking Restrictions", "Manditory fasting", "Restrictions on who you can marry", "No pre-marital sex", "Restrictions on Gender Identity/Sexuality", "Restrictions on cutting hair", "None of the above"],
     5 : ["Yes", "No"],
     6 : ["Worships in a building of religious significance of a specific week day each week", "Often happens in a building of religious significance but sometimes happens in an informal setting, on a specific day of the week", "Worship is not on a specific day, or no common gathering place"],
     7 : ["Yes", "No"],
@@ -111,7 +111,7 @@ ans_key = {
     1 : [[0,1,2,3], [4,5,6], []],
     2 : [[3,4,5,6], [0], [1], [2]],
     3 : [[5], [6,4], [0,2,1], [0]],
-    4 : [[5,6], [5,4], [5,6], [4,5,6], [0], [3], [1,2,3,4,5,6]],
+    4 : [[5,6], [5,4], [5,6], [4,5,6], [1,2,3,4,5,6], [3], [0]],
     5 : [[0,1,4,5,6], [2,3]],
     6 : [[4,5,6], [0,2], [1,3]],
     7 : [[1,3,5], [0,2,4,6]],
@@ -155,15 +155,18 @@ def make_pro_con_dict() -> None:
     for index, j in enumerate(final_information.values()):
         key = index + 1
         for ind, i in enumerate(ans_key[key]):
-            if j[ind]:
-                for rel in i:
-                    religion = get_rel(rel)
-                    religion_pro_cons[religion]["pro"].append([key,ind])
+            try:
+                if j[ind]:
+                    for rel in i:
+                        religion = get_rel(rel)
+                        religion_pro_cons[religion]["pro"].append([key,ind])
 
-            else:
-                for rel in i:
-                    religion = get_rel(rel)
-                    religion_pro_cons[religion]["con"].append([key, ind])
+                else:
+                    for rel in i:
+                        religion = get_rel(rel)
+                        religion_pro_cons[religion]["con"].append([key, ind])
+            except IndexError:
+                pass
 
 def get_pro_con_ans(coord):
     (question,ans) = coord
